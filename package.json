@@ -1,0 +1,35 @@
+{
+  "name": "object_convertor",
+  "version": "0.0.1",
+  "description": "Transforms a JSON object into another JSON object",
+  "main": "src/cli.js",
+  "scripts": {
+    "publish": "reggie --url http://npm.findmypast.dun.fh:5001/ publish",
+    "test": "jest"
+  },
+  "bin": {
+    "object_convertor": "src/cli.js"
+  },
+  "jest": {
+    "testResultsProcessor": "jest-teamcity-reporter"
+  },
+  "repository": {
+    "type": "git",
+    "url": "object_convertor"
+  },
+  "author": "FMP",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "jest-teamcity-reporter": "^0.6.2"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "fs-extra": "^4.0.2",
+    "install": "^0.10.1",
+    "js-yaml": "^3.10.0",
+    "lodash": "^4.17.4",
+    "npm": "^5.5.1",
+    "object-mapper": "^4.2.0"
+  }
+}

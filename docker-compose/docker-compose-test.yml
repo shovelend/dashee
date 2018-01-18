@@ -1,0 +1,7 @@
+version: '2'
+services:
+  test:
+    image: $IMAGE
+    environment:
+      - NODE_ENV=test
+    command: npm test
