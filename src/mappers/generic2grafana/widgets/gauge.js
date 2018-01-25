@@ -10,6 +10,11 @@ module.exports = function widgetGaugeMapper() {
       transform: (value) => 'briangann-gauge-panel'
     },
     'widget.span': 'span',
+    'widget.legend.show': 'legend.show',
+    'widget.legend.position': {
+      'key': 'legend.rightSide',
+      transform: srcValue => srcValue === "right"
+    },
     'widget.draw_options': {
       transform: (srcValue, srcObject, destObject) => {
         destObject.colors = [];

@@ -9,6 +9,11 @@ module.exports = function widgetGraphMapper() {
       transform: (value) => 'graph'
     },
     'widget.span': 'span',
+    'widget.legend.show': 'legend.show',
+    'widget.legend.position': {
+      'key': 'legend.rightSide',
+      transform: srcValue => srcValue === "right"
+    },
     'widget.draw_options.bar': 'bars',
     'widget.draw_options.lines': 'lines',
     'widget.draw_options.points': 'points',

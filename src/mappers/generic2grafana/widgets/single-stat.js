@@ -10,6 +10,11 @@ module.exports = function widgetStatMapper() {
       transform: (value) => 'singlestat'
     },
     'widget.span': 'span',
+    'widget.legend.show': 'legend.show',
+    'widget.legend.position': {
+      'key': 'legend.rightSide',
+      transform: srcValue => srcValue === "right"
+    },
     'widget.draw_options.colours': {
       transform: (srcValue, srcObject, destObject) => {
         destObject.colors = [];

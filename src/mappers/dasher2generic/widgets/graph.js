@@ -74,8 +74,8 @@ module.exports = function widgetGaugeMapper() {
           lines: !isBarChart,
           points: !isBarChart,
           fill_transparency_percentage: 10,
-          line_width: 2,
-          points_radius: isBarChart ? 0 : 5,
+          line_width: 1,
+          points_radius: isBarChart ? 0 : 3,
           staircase: false
         }
       }

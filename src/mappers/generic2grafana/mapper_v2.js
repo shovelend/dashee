@@ -23,7 +23,6 @@ function mapRows(dashboard, map) {
       if (widgetMappers[widget.widget.type]) {
         const result = objectMapper(widget, widgetMappers[widget.widget.type]);
         result.id = ++widgetNum;
-        result.legend = { show: false };  // Move into widget mapper.
         panels.push(result);
         // console.log(`===> Pushing ${widget.widget.type}`);
       }
