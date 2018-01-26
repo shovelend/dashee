@@ -23,12 +23,8 @@ module.exports = function widgetGaugeMapper() {
     },
     'title': 'title',
     'width': {
-      'key': 'widget.span',
-      transform: value  => value * 3
-    },
-    'height': {
-      'key': 'widget.height',
-      transform: value => value * 360
+      'key': 'widget.width',
+      transform: value  => (4 / value) * 100
     },
     'from_duration': {
       'key': 'widget.duration',

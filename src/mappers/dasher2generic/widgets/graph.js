@@ -21,12 +21,8 @@ module.exports = function widgetGaugeMapper() {
     },
     'title': 'title',
     'width': {
-      'key': 'widget.span',
-      transform: value  => value * 3
-    },
-    'height': {
-      'key': 'widget.height',
-      transform: value => value * 360
+      'key': 'widget.width',
+      transform: value  => (4 / value) * 100
     },
     'from_duration': {
       'key': 'widget.duration',
@@ -51,8 +47,8 @@ module.exports = function widgetGaugeMapper() {
         destObject.widget.metrics = [];
 
 
+        let charCode = 65;
         _.forOwn(srcValue, metric => {
-          let charCode = 65;
           const datasource = srcObject.datasources[metric.source];
           const key = metricsParser(datasource.functions, datasource.key);
           destObject.widget.metrics.push({
@@ -72,7 +68,7 @@ module.exports = function widgetGaugeMapper() {
         destObject.widget.draw_options = {
           bar: isBarChart,
           lines: !isBarChart,
-          points: !isBarChart,
+          points: false,
           fill_transparency_percentage: 10,
           line_width: 1,
           points_radius: isBarChart ? 0 : 3,

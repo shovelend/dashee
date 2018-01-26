@@ -8,7 +8,10 @@ module.exports = function widgetGraphMapper() {
       key: 'type',
       transform: (value) => 'graph'
     },
-    'widget.span': 'span',
+    'widget.width': {
+      key: 'span',
+      transform: value => 0.12 * value
+    },
     'widget.legend.show': 'legend.show',
     'widget.legend.position': {
       'key': 'legend.rightSide',
@@ -24,6 +27,7 @@ module.exports = function widgetGraphMapper() {
     'widget.draw_options.line_width': 'linewidth',
     'widget.draw_options.points_radius': 'pointradius',
     'widget.draw_options.staircase': 'steppedLine',
+    'widget.draw_options.stack': 'stack',
     'widget.draw_options.thresholds[].value': 'thresholds[].value',
     'widget.draw_options.thresholds[].fill': 'thresholds[].fill',
     'widget.draw_options.thresholds[].line': 'thresholds[].line',
@@ -40,6 +44,9 @@ module.exports = function widgetGraphMapper() {
       transform: (duration) => {
         if (!duration) return null;
 
+        if (!durationMap[duration.unit]) {
+          console.log('\n\n********* Missing duration in map:', duration.unit, '\n\n');
+        }
         return `${duration.value}${durationMap[duration.unit]}`;
       }
     },

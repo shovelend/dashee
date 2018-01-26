@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = { min: 'minute', h: 'h', d: 'd'};
+module.exports = { min: 'minute', h: 'hour', d: 'day'};

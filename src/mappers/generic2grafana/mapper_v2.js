@@ -31,7 +31,7 @@ function mapRows(dashboard, map) {
       }
     });
     // console.log(panels);
-    rows.push({collapse: false, height: 363, panels: panels});
+    rows.push({collapse: false, height: 400, panels: panels});
   });
 
   return rows;

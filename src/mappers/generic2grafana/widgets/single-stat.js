@@ -9,7 +9,10 @@ module.exports = function widgetStatMapper() {
       key: 'type',
       transform: (value) => 'singlestat'
     },
-    'widget.span': 'span',
+    'widget.width': {
+      key: 'span',
+      transform: value => 0.12 * value
+    },
     'widget.legend.show': 'legend.show',
     'widget.legend.position': {
       'key': 'legend.rightSide',
