@@ -56,4 +56,10 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
     "operation": "gt"
   }]
   ```
-  Docs on the properties in the generic JSON file are coming soon!
+  Docs on the properties in the generic JSON file are coming soon! In the meantime, take a look at an [example generic JSON file](./examples/neutral.json) which holds a dashboard that contains a graph, guage and a single number.
+
+  ![Sample dashboard](./images/sample_dashboard.png)
+
+  The format, in general is that each file contains a `dashboards` object and each property in that object is the name of a dashboard. Each dashboard consists of `rows` and each row can have one or more `widgets`.  Each widget has `draw_options` that desibe how the widget should look; each widget type has a different set of `draw_options`. Most should be self explanatory.
+
+  The `width` property of a widget is the percentage width of the window to use for the widget, so a row that contains three widgets would have a value of 33, four widgets in a row then the width is 25.  We can mix and match. E.g.: It's possible to have 2 widgets in a row, one that is using 25% of the window width, the other that is using 75%.

@@ -1,0 +1,187 @@
+{
+  "version": 2,
+  "dashboards": {
+    "performance": {
+      "title": "Testing Dashboard GenerationFlipper Service Performance",
+      "refresh": 30,
+      "duration": {
+        "unit": "hour",
+        "value": 4
+      },
+      "rows": [{
+        "widgets": [{
+            "name": "response_time",
+            "title": "Flipper Service Response Time (ms)",
+            "transparent": false,
+            "widget": {
+              "type": "graph",
+              "width": 50,
+              "legend": {
+                "show": true,
+                "position": "bottom"
+              },
+              "draw_options": {
+                "bar": false,
+                "lines": true,
+                "points": true,
+                "fill_transparency_percentage": 10,
+                "line_width": 2,
+                "points_radius": 5,
+                "staircase": false,
+                "stack": false,
+                "thresholds": [{
+                  "value": 100,
+                  "colour": "critical",
+                  "fill": true,
+                  "line": true,
+                  "operation": "gt"
+                }]
+              },
+              "duration": {
+                  "unit": "minute",
+                  "value": 180,
+                  "hide": false
+                },
+              "datasource": "FMP Graphite",
+              "metrics": [{
+                "metric": {
+                  "key": "summarize(averageSeries(long.flipper.production.*.*.express.toggle.requestElapsedTime), '10m', 'avg', false)",
+                  "id": "A"
+                }
+              }]
+            }
+        }]
+        },
+        {
+          "widgets": [{
+            "name": "flipper-errors",
+            "title": "Avg Num Flipper Errors/min",
+            "transparent": false,
+            "widget": {
+              "type": "stat",
+              "width": 50,
+              "legend": {
+                "show": false
+              },
+              "draw_options": {
+                "colours": {
+                  "ok": "rgba(50, 172, 45, 0.97)",
+                  "warning": "rgba(237, 129, 40, 0.89)",
+                  "critical": "rgba(245, 54, 54, 0.9)"
+                },
+                "fontSize": 200,
+                "prefix": {
+                  "text": "",
+                  "percentage_fontsize": 50
+                },
+                "postfix": {
+                  "text": " errors/min",
+                  "percentage_fontsize": 50
+                },
+                "thresholds": [{
+                    "value": 5,
+                    "colour": "warning"
+                  },
+                  {
+                    "value": 10,
+                    "colour": "critical"
+                  }
+                ]
+              },
+              "duration": {
+                "unit": "minute",
+                "value": 1,
+                "hide": true
+              },
+              "datasource": "FMP Graphite",
+              "metrics": [{
+                "metric": {
+                  "key": "summarize(averageSeries(long.flipper.production.*.fh1-flipper0*.errors),'1m', 'sum')",
+                  "id": "A"
+                }
+              }],
+              "value_mappings": [{
+                "operation": "=",
+                "value": "null",
+                "text": "0"
+              }]
+            }
+          },
+          {
+            "name": "flipper01-cpu",
+            "title": "Flipper01 - CPU",
+            "transparent": true,
+            "widget": {
+              "type": "gauge",
+              "width": 50,
+              "legend": {
+                "show": false
+              },
+              "draw_options": {
+                "edgeWidth": 0.05,
+                "gaugeRadius": 0,
+                "maxValue": 100,
+                "minValue": 0,
+                "font": {
+                  "tick": {
+                    "type": "Open Sans",
+                    "size": 18
+                  },
+                  "value" : {
+                    "type": "Open Sans",
+                    "size": 22
+                  }
+                },
+                "unitsFont": "Open Sans",
+                "unitsLabelFontSize": 22,
+                "colours": {
+                  "ok": "rgba(50, 172, 45, 0.97)",
+                  "warning": "rgba(237, 129, 40, 0.89)",
+                  "critical": "rgba(245, 54, 54, 0.9)",
+                  "face": "rgba(255, 255, 255, 1)",
+                  "minorTick": "rgba(0,0,0,1)",
+                  "foreground": "rgba(0,153,204,1)",
+                  "tickLabel": "rgba(0,0,0,1)"
+                },
+                "thresholds": [{
+                    "value": 75,
+                    "colour": "warning"
+                  },
+                  {
+                    "value": 90,
+                    "colour": "critical"
+                  }
+                ],
+                "animateNeedle": true,
+                "animateNeedleSpeed": 1500,
+                "showThresholds": {
+                  "lower": false,
+                  "middle": true,
+                  "upper": true
+                },
+                "colourOnValue": true
+              },
+              "duration": {
+                "unit": "minute",
+                "value": 5,
+                "hide": true
+              },
+              "datasource": "FMP Graphite",
+              "metrics": [{
+                "metric": {
+                  "key": "scale(summarize(keepLastValue(long.icinga2.fh1-flipper01_dun_fh.services.cpu_linux.nrpe.perfdata.load1.value, 100), '1min', 'avg', false), 100)",
+                  "id": "A"
+                }
+              }],
+              "value_mappings": [{
+                "operation": "=",
+                "value": "null",
+                "text": "N/A"
+              }]
+            }
+          }]
+        }
+      ]
+    }
+  }
+}
