@@ -1,0 +1,190 @@
+# Dashboard JSON format
+
+If you need to create a dashboard from nothing, you'll need to build up a JSPON file that describes the dashboards, widgets, etc. We have a [sample JSON file](./examples/neutral.json) to get your started. This page provides more detail on the properties in the file.
+
+## Properties
+
+### Top level
+
+Top level properties of the JSON file.
+
+| Property | Description |
+| --- | --- |
+| `version` | The version of the JSON file. Currently this is `2` |
+| `dashboards` | Holds the dashboards defined in the JSON file. Each top level property in this object is the name of a dashboard. See [dashboard](#dashboards) object definition  for more details.
+
+Example:
+
+```JSON
+{
+  "version": 2,
+  "dashboards": {
+    ...
+  }
+}
+```
+
+### Dashboard
+
+Properties that define a dashboard
+
+| Property | Description |
+| --- | --- |
+| `title` | The title of the dashboard |
+| `refresh` | The time in seconds to refresh the dashboard with new data |
+| `duration` | The default number of minutes, hours or days to display for the dashboard. This can be overridden at the widget level. Populates the X-axis accordingly. See the [duration](#duration) object definition for more details.
+| `rows` | An array of [row](#row) objects that hold the widgets to appear in each row of the dashboard.|
+
+Example:
+
+Defines a dashboard named `performance` that shows 4 hours of data.
+
+```JSON
+"performance": {
+      "title": "Testing Dashboard GenerationFlipper Service Performance",
+      "refresh": 30,
+      "duration": {
+        "unit": "hour",
+        "value": 4
+      },
+      "rows": [{
+      ...
+    }]
+  }
+```
+
+### Row
+
+A row holds a number of widgets that define what graphs appear in the row.
+
+| Property | Description |
+| --- | --- |
+| `widgets` | An array of [widgets](#widget) to appear in the row. |
+
+Example:
+
+```json
+  "widgets": [{
+    ...
+  }]
+```
+
+### Widget
+
+Defines the type of visualisation to display
+
+| Property | Description |
+| --- | --- |
+| `type` | The type of visualisation. Must be one of `graph`, `gauge` or `stat` |
+| `title` | The title of visualisation. |
+| `width` | The percentage of window real estate this visualisation uses in the row. A value of 50 means use half of the row. |
+| `transparent` | Set to true if you want to background of the visualisation to be transparent |
+| `draw_options` | Each visualisation has a different set of draw options. See either [Gauge draw options](#gauge-draw-options), [Graph draw options](#graph_draw_options) or [Stat draw options](#stat-draw-options) for more details. |
+| `duration` | The number of minutes, hours or days to display for the visualisation. Overrides the default set at the dashboard level. See [duration](#duration) |
+| `datasource` | The name of the data source used to source the metric data. For now, use `FMP Graphite` |
+| `metrics` | An array of [metric](#metrics) objects that define the data needed for the visualisation |
+
+Example:
+
+```JSON
+"widget": {
+  "type": "graph",
+  "height": 360,
+  "span": 6,
+  "draw_options": {
+  },
+  "duration": {
+      "unit": "minute",
+      "value": 180,
+      "hide": false
+    },
+  "datasource": "FMP Graphite",
+  "metrics": [{
+    "metric": {...}
+    },
+    ...
+  }]
+}
+```
+### Graph draw options
+
+Describes the properties needed to render the graph visualisation
+
+| Property | Description |
+| --- | --- |
+| `bar` | If `true` then renders a bar graph |
+| `lines` | If `true` then renders a line graph |
+| `line_width` | Width of the line for line graphs |
+| `starcase` | If `true` renders the line graph as a staircase` |
+| `points` | If `true` then renders circles on the data points of the graph |
+| `points_radius` | The render size of the point in pixels|
+| `fill_transparency_percentage` | When set to a number greater than zero this fills in the area underneath a line graph. 100% will fill with a solid colour |
+| `thresholds` | If set defines a threshold for the graph.|
+| `threholds.value` | Value for the threshold |
+| `thresholds.colour` | Colour to use for the threshold. Use either `critical`, `warning` or `ok` |
+| `thresholds.fill` | If `true` fills the area above the threshold on the graph in the threshold colour |
+| `thresholds.line` | If `true` drawa a line across the graph at the threshold value |
+| `thresholds.operation` | Whether the threshold is above or below the threshold value. Use either `gt` or `lt` |
+
+Example:
+
+```JSON
+"draw_options": {
+  "bar": false,
+  "lines": true,
+  "points": true,
+  "fill_transparency_percentage": 10,
+  "line_width": 2,
+  "points_radius": 5,
+  "staircase": false,
+  "thresholds": [{
+    "value": 100,
+    "colour": "critical",
+    "fill": true,
+    "line": true,
+    "operation": "gt"
+  }]
+}
+```
+
+### Metric
+
+Describes how to get data for the visualisation. At the moment, all metrics are coming from Graphite.
+
+| Property | Description |
+| --- | --- |
+| `key` | The graphite command that returns the data |
+| `id` | A unique identifier for the metric. Start at `A` and increment for each metric in the list |
+
+Example:
+
+```JSON
+"metrics": [{
+  "metric": {
+    "key": "summarize(averageSeries(long.flipper.production.*.*.express.toggle.requestElapsedTime), '10m', 'avg', false)",
+    "id": "A"
+  }
+}]
+```
+
+### Duration
+
+Provides time based values for dashboards and widgets.
+
+| Property | Description |
+| --- | --- |
+| `unit` | The unit of time, either `minute`, `hour` or `day` |
+| `value` | The value of the unit |
+| `hide` | Boolean indicating if the time override shown be shown on the visualisation (`false`) or not shown (`true`) |
+
+Example:
+
+This defines a duration of four hours:
+
+```JSON
+"duration": {
+  "unit": "hour",
+  "value": 4,
+  "hide": false
+}
+```
