@@ -115,11 +115,11 @@ Describes the properties needed to render the graph visualisation
 | `bar` | If `true` then renders a bar graph |
 | `lines` | If `true` then renders a line graph |
 | `line_width` | Width of the line for line graphs |
-| `starcase` | If `true` renders the line graph as a staircase` |
+| `staircase` | If `true` renders the line graph as a staircase |
 | `points` | If `true` then renders circles on the data points of the graph |
 | `points_radius` | The render size of the point in pixels|
 | `fill_transparency_percentage` | When set to a number greater than zero this fills in the area underneath a line graph. 100% will fill with a solid colour |
-| `thresholds` | If set defines a threshold for the graph.|
+| `thresholds` | If set should be an array that defines a threshold for the graph.|
 | `threholds.value` | Value for the threshold |
 | `thresholds.colour` | Colour to use for the threshold. Use either `critical`, `warning` or `ok` |
 | `thresholds.fill` | If `true` fills the area above the threshold on the graph in the threshold colour |
@@ -145,6 +145,173 @@ Example:
     "operation": "gt"
   }]
 }
+```
+
+### Stat draw options
+
+Describes the properties needed to render the single statistic visualisation
+
+| Property | Description |
+| --- | --- |
+| `colours` | Defines the `ok`, `warning` and `critical` colours in `rgba` format. See example below. |
+| `fontSize` | Percentage font size used to display the statistic |
+| `prefix` | Defines the text to display before the statistic along with a percentage font size. |
+| `prefix.text` | The text to display before the statistic |
+| `prefix.percentage_fontsize` | The size of the font for the prefix text |
+| `postfix` | Defines the text to display after the statistic along with a percentage font size. |
+| `postfix.text` | The text to display after the statistic |
+| `postfix.percentage_fontsize` | The size of the font for the postfix text |
+| `thresholds` | An array of [threshold](#threshold) objects that hold the threshold colours and values for the stat visualisation. This allows you to change the colour of the text depending on the value in the stat, so values over a certain limit can be displayed in red for example.|
+
+Example:
+
+```JSON
+"draw_options": {
+  "colours": {
+    "ok": "rgba(50, 172, 45, 0.97)",
+    "warning": "rgba(237, 129, 40, 0.89)",
+    "critical": "rgba(245, 54, 54, 0.9)"
+  },
+  "fontSize": 200,
+  "prefix": {
+    "text": "",
+    "percentage_fontsize": 50
+  },
+  "postfix": {
+    "text": " errors/min",
+    "percentage_fontsize": 50
+  },
+  "thresholds": [{
+      "value": 5,
+      "colour": "warning"
+    },
+    {
+      "value": 10,
+      "colour": "critical"
+    }
+  ]
+}
+```
+
+### Gauge draw options
+
+Describes the properties needed to render the gauge  visualisation.
+
+| Property | Description |
+| --- | --- |
+| `edgeWidth` | The size gauge edge as a percentage of the radius |
+| `gaugeRadius` | The radius of the gauge in pixels, or 0 to auto scale. |
+| `maxValue` | The maximum value of the gauge |
+| `minValue` | The minimum value of the gauge |
+| `font` | Font details for the gauge. See [font](#font) for more details. |
+| `unitsFont` | THIS IS TEMPORARY. Set to `Open Sans` |
+| `unitsLabelFontSize` | THIS IS TEMPORARY. Set to 22 |
+| `colours` | Defines the `ok`, `warning` `critical`, `face`, `minorTick`, `foreground` and `tickLabel` colours in `rgba` format. See example below. |
+| `thresholds` | An array of [threshold](#threshold) objects that hold the threshold colours and values for the gauge visualisation. This allows you to render warning and critical areas of the guage.|
+| `animateNeedle` | Set to true if you want to needle to animate between values |
+| `animateNeedleSpeed` | the needle animation speed in milliseconds. |
+| `showThresholds` | Controls whether the thresholds are rendered on the gauge. Has three properties, `lower`, `middle`, `upper` which take boolean values. |
+| `colourOnValue` | Flag indicating if the value should be rendered depending on the threshold colour |
+
+Example:
+```JSON
+"draw_options": {
+  "edgeWidth": 0.05,
+  "gaugeRadius": 0,
+  "maxValue": 100,
+  "minValue": 0,
+  "font": {
+    "tick": {
+      "type": "Open Sans",
+      "size": 18
+    },
+    "value" : {
+      "type": "Open Sans",
+      "size": 22
+    }
+  },
+  "unitsFont": "Open Sans",
+  "unitsLabelFontSize": 22,
+  "colours": {
+    "ok": "rgba(50, 172, 45, 0.97)",
+    "warning": "rgba(237, 129, 40, 0.89)",
+    "critical": "rgba(245, 54, 54, 0.9)",
+    "face": "rgba(255, 255, 255, 1)",
+    "minorTick": "rgba(0,0,0,1)",
+    "foreground": "rgba(0,153,204,1)",
+    "tickLabel": "rgba(0,0,0,1)"
+  },
+  "thresholds": [{
+      "value": 75,
+      "colour": "warning"
+    },
+    {
+      "value": 90,
+      "colour": "critical"
+    }
+  ],
+  "animateNeedle": true,
+  "animateNeedleSpeed": 1500,
+  "showThresholds": {
+    "lower": false,
+    "middle": true,
+    "upper": true
+  },
+  "colourOnValue": true
+}
+```
+
+### Font
+
+Describes the font details for a gauge
+
+| Property | Description |
+| --- | --- |
+| `tick` | The font details for the ticks on the gauge |
+| `tick.type` | The font name. Eg: `Open Sans` |
+| `tick.size` | The font size in points. E.g.: `18` |
+| `value` | The font details for the value on the gauge |
+| `value.type` | The font name. Eg: `Open Sans` |
+| `value.size` | The font size in points. E.g.: `18` |
+
+Example:
+
+```JSON
+"font": {
+  "tick": {
+    "type": "Open Sans",
+    "size": 18
+  },
+  "value" : {
+    "type": "Open Sans",
+    "size": 22
+  }
+}
+```
+
+### Threshold
+
+Defines threshold information
+
+| Property | Description |
+| --- | --- |
+| `value` | The threshold value |
+| `colour` | Description on the colour value to use, either `ok`, `warning` or `critical` |
+
+Example:
+
+Sets a warning threshold of 5 and a critical threshold of 10.
+
+```JSON
+"thresholds": [{
+    "value": 5,
+    "colour": "warning"
+  },
+  {
+    "value": 10,
+    "colour": "critical"
+  }
+]
 ```
 
 ### Metric
