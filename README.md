@@ -1,6 +1,13 @@
 # Dasher 2 Grafana
 
-A tool to convert old dasher dashboards into Grafana dashboards
+A tool to convert old dasher dashboards into Grafana dashboards. That is, changes this:
+
+![](./images/dasher.png "Dasher")
+
+into this:
+
+![](./images/grafana.png "Grafana")
+
 
 ## WARNING.
 This a work in progress. Please be gentle with me if it all goes horribly wrong.
@@ -53,4 +60,4 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
 
 1. Next steps
  * Use grafana to automatically created a playlist of yoiur dashboard. (`Dashboards -> Playlist)`)
- * Update your generic JSON file to add some eye candy, like points on the data values or a threshold value for your graph. See [Dashboard JSON format](./dashboard.md) for more details on how to tweak your dashboard. 
+ * Update your generic JSON file to add some eye candy, like points on the data values or a threshold value for your graph. See [Dashboard JSON format](./dashboard.md) for more details on how to tweak your dashboard.
