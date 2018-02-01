@@ -204,8 +204,6 @@ Describes the properties needed to render the gauge  visualisation.
 | `maxValue` | The maximum value of the gauge |
 | `minValue` | The minimum value of the gauge |
 | `font` | Font details for the gauge. See [font](#font) for more details. |
-| `unitsFont` | THIS IS TEMPORARY. Set to `Open Sans` |
-| `unitsLabelFontSize` | THIS IS TEMPORARY. Set to 22 |
 | `colours` | Defines the `ok`, `warning` `critical`, `face`, `minorTick`, `foreground` and `tickLabel` colours in `rgba` format. See example below. |
 | `thresholds` | An array of [threshold](#threshold) objects that hold the threshold colours and values for the gauge visualisation. This allows you to render warning and critical areas of the guage.|
 | `animateNeedle` | Set to true if you want to needle to animate between values |
