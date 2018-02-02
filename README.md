@@ -56,7 +56,7 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
  {"slug":"titan-request","status":"success","version":1}%
  ```
 
-1. Logon to [Grafana](http://grafana.dun.fh:3000) and Navigate to `Dashboards -> Home`. From `Home` pulldown menu, locate your dashboard and check that everything is OK.
+1. Navigate to [Grafana](http://grafana.dun.fh:3000) (no need to logon, anonymous access is enabled) and Navigate to `Dashboards -> Home`. From `Home` pulldown menu, locate your dashboard and check that everything is OK.
 
 1. Next steps
  * Use grafana to automatically created a playlist of yoiur dashboard. (`Dashboards -> Playlist)`)
