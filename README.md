@@ -45,7 +45,7 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
 
 1. Send your newly created dashboard files to Grafana.
  ```
- curl -XPOST "http://grafana.dun.fh:3000/api/dashboards/db" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer {api_token}" -d @{path_to_your_json_file}
+ node src/cli publish grafana {path_to_generic_json} --grafana-key {api_token}
  ```
 
  Find the `{api_token}` in vault under `secrets\grafana\api_key`
@@ -53,7 +53,10 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
  if all goes well, something like the following should be returned:
 
  ```
- {"slug":"titan-request","status":"success","version":1}%
+ Upload successful
+{ slug: 'some text',
+  status: 'success',
+  version: 2 }
  ```
 
 1. Navigate to [Grafana](http://grafana.dun.fh:3000) (no need to logon, anonymous access is enabled) and Navigate to `Dashboards -> Home`. From `Home` pulldown menu, locate your dashboard and check that everything is OK.
