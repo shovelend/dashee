@@ -2,7 +2,7 @@ version: '2'
 
 vars:
   registry: docker-registry.dun.fh
-  base_service_name: object_convertor
+  base_service_name: dashee
 
 include:
   - from: git+ssh://git@github.com:findmypast/usher_shared_tasks.git
@@ -12,18 +12,18 @@ include:
 
 tasks:
   build:
-    description: Build object_convertor
+    description: Build dashee image
     do: global.docker.create_image
     service_folder: .
     service_name: <%=base_service_name%>
 
   push:
-    description: Push the object_convertor image to the Docker registry
+    description: Push the dashee image to the Docker registry
     do: global.docker.push_image
     service_name: <%=base_service_name%>
 
   test:
-    description: Run object_convertor unit tests
+    description: Run dashee unit tests
     do: global.docker.compose_run
     service_folder: ./docker-compose
     compose_filename: docker-compose-test.yml
@@ -32,7 +32,7 @@ tasks:
       - IMAGE=<%=registry%>/findmypast/<%=base_service_name%>:<%=version%>
 
   publish:
-    description: Publish object_convertor CLI to internal NPM
+    description: Publish dashee CLI to internal NPM
     do: global.docker.compose_run
     service_folder: ./docker-compose
     compose_filename: docker-compose-publish.yml
