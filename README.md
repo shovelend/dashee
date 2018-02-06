@@ -14,16 +14,18 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
 
 ## Getting started
 
-1. Clone this repo
+1. Download the `dashee` command line tool:
 
-1. Install dependencies - `npm install`
+ ```sh
+ npm install dashee@http://npm.findmypast.dun.fh:5001/package/dashee/latest -g
+ ```
 
 1. Convert your Dasher YML file into a generic JSON dashboard file
 
  If you don't have a dasher file to convert, skip to the next step. Otherwise, type the following command to convert your file:
 
  ```
- node src/cli transform dasher2generic {path_to_dasher_yml} {your_service_name}
+ dashee transform dasher2generic {path_to_dasher_yml} {your_service_name}
  ```
 
  This should spit out some JSON and also create a JSON file called `{your_service_name}-dashboard-generic.json`. This will be the new `dasher.yml` file in future, so any changes to the dashboard config should be applied here.
@@ -37,7 +39,7 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
  Once you have JSON file in the generic format, then run this command to convert it into JSON suitable for uploading into Grafana.
 
  ```
- node src/cli transform generic2grafana {path_to_generic_json} {your_service_name}
+ dashee transform generic2grafana {path_to_generic_json} {your_service_name}
  ```
  This should spit out more JSON and create a number of files, depending on the number of dashboards in your original `dasher.yml`. Look for files starting `{your_service_name}-*.json`
 
@@ -45,7 +47,7 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
 
 1. Send your newly created dashboard files to Grafana.
  ```
- node src/cli publish grafana {path_to_generic_json} --grafana-key {api_token}
+ dashee publish grafana {path_to_generic_json} --grafana-key {api_token}
  ```
 
  Find the `{api_token}` in vault under `secrets\grafana\api_key`
