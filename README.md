@@ -20,7 +20,7 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
  npm install dashee@http://npm.findmypast.dun.fh:5001/package/dashee/latest -g
  ```
 
-1. Convert your Dasher YML file into a generic JSON dashboard file
+2. Convert your Dasher YML file into a generic JSON dashboard file
 
  If you don't have a dasher file to convert, skip to the next step. Otherwise, type the following command to convert your file:
 
@@ -32,7 +32,7 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
 
  Any problems, raise an issue here and provided a link to the dasher YML file.
 
-1. Convert your newly created generic JSON file into a Grafana compliant JSON file.
+3. Convert your newly created generic JSON file into a Grafana compliant JSON file.
 
  If you didn't convert a dasher file, you can create one from scratch. See the [Dashboard JSON format](./dashboard.md) for more details.
 
@@ -45,7 +45,7 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
 
   Any problems, raise an issue here and provided a link to the dasher YML file or upload your generic JSON file.
 
-1. Send your newly created dashboard files to Grafana.
+4. Send your newly created dashboard files to Grafana.
  ```
  dashee publish grafana {path_to_generic_json} --grafana-key {api_token}
  ```
@@ -61,8 +61,8 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
   version: 2 }
  ```
 
-1. Navigate to [Grafana](http://grafana.dun.fh:3000) (no need to logon, anonymous access is enabled) and Navigate to `Dashboards -> Home`. From `Home` pulldown menu, locate your dashboard and check that everything is OK.
+5. Navigate to [Grafana](http://grafana.dun.fh:3000) (no need to logon, anonymous access is enabled) and Navigate to `Dashboards -> Home`. From `Home` pulldown menu, locate your dashboard and check that everything is OK.
 
-1. Next steps
+6. Next steps
  * Use grafana to automatically created a playlist of yoiur dashboard. (`Dashboards -> Playlist)`)
  * Update your generic JSON file to add some eye candy, like points on the data values or a threshold value for your graph. See [Dashboard JSON format](./dashboard.md) for more details on how to tweak your dashboard.
