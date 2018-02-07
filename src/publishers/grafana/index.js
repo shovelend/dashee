@@ -27,7 +27,7 @@ function ensureExists(opts, key, option) {
     }
   })
   .then(result => {
-    console.log('Upload successful');
+    console.log(`Upload successful for: ${sourceFilename}`);
     console.log(result);
   })
   .catch(e => {

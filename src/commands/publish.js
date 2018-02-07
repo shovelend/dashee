@@ -2,7 +2,7 @@
 
 const fs = require('fs-extra');
 
-module.exports = (publisher, sourceFilename, opts) => {
+module.exports = async (publisher, sourceFilename, opts) => {
   const filename = `${__dirname}/../publishers/${publisher}/index.js`;
 
   if (!fs.pathExistsSync(filename)) {
