@@ -81,6 +81,6 @@ module.exports = (map, srcObject, destFilename, opts) => {
   });
 
   genericDashboard.dashboards = dashboards;
-  console.log(JSON.stringify(genericDashboard));
   fs.writeJsonSync(filename, genericDashboard);
+  console.log(`Creating dashboard: ${filename}`);
 };

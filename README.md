@@ -28,7 +28,7 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
  dashee transform dasher2generic {path_to_dasher_yml} {your_service_name}
  ```
 
- This should spit out some JSON and also create a JSON file called `{your_service_name}-dashboard-generic.json`. This will be the new `dasher.yml` file in future, so any changes to the dashboard config should be applied here.
+ This confirm that a JSON file called `{your_service_name}-dashboard-generic.json` has been created. This will be the new `dasher.yml` file in future, so any changes to the dashboard config should be applied here.
 
  Any problems, raise an issue here and provided a link to the dasher YML file.
 
@@ -41,18 +41,17 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
  ```
  dashee transform generic2grafana {path_to_generic_json} {your_service_name}
  ```
- This should spit out more JSON and create a number of files, depending on the number of dashboards in your original `dasher.yml`. Look for files starting `{your_service_name}-*.json`
+ This should confirm that a number of files have been created - the number of files depends on the number of dashboards in your original `dasher.yml`. Look for files starting `{your_service_name}-*.json`
 
-  Any problems, raise an issue here and provided a link to the dasher YML file or upload your generic JSON file.
+ Any problems, raise an issue here and provided a link to the dasher YML file or upload your generic JSON file.
 
 4. Send your newly created dashboard files to Grafana.
  ```
- dashee publish grafana {path_to_generic_json} --grafana-key {api_token}
+ dashee publish grafana {path_to_grafana_json} --grafana-key {api_token}
  ```
+ where `{path_to_grafana_json}` is one of the JSON files created in step 3. Find the `{api_token}` in vault under `secrets\grafana\api_key`
 
- Find the `{api_token}` in vault under `secrets\grafana\api_key`
-
- if all goes well, something like the following should be returned:
+ If all goes well, something like the following should be returned:
 
  ```
  Upload successful

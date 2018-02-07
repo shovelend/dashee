@@ -50,8 +50,8 @@ function buildDashboard(dashboard, dashboardName, map, destFilename) {
 
   Object.assign(grafanaDashboard.dashboard, dashboardMappedResult);
 
-  console.log(JSON.stringify(grafanaDashboard));
   fs.writeJsonSync(filename, grafanaDashboard);
+  console.log(`Creating dashboard: ${filename}`);
 }
 
 module.exports = (map, srcObject, destFilename, opts) => {
