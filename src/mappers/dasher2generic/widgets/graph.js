@@ -22,7 +22,7 @@ module.exports = function widgetGaugeMapper() {
     'title': 'title',
     'width': {
       'key': 'widget.width',
-      transform: value  => (4 / value) * 100
+      transform: value  => (value / 4) * 100
     },
     'from_duration': {
       'key': 'widget.duration',
