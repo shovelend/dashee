@@ -60,6 +60,12 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
   version: 2 }
  ```
 
+ Alternatively, use `publish-all` to send all the generated dashboard files to grafana:
+
+ ```
+ dashee publish-all grafana {your_service_name} {path_to_grafana_json_files} --grafana-key {api_token}
+ ```
+
 5. Navigate to [Grafana](http://grafana.dun.fh:3000) (no need to logon, anonymous access is enabled) and Navigate to `Dashboards -> Home`. From `Home` pulldown menu, locate your dashboard and check that everything is OK.
 
 6. Next steps
