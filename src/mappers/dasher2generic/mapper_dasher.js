@@ -32,7 +32,7 @@ function mapRows(dashboard, map, datasources) {
 
         if (++widgetPositionInRow === maxPosition) {
           // console.log('End of row');
-          rows.push(widgets);
+          rows.push({height: 33, widgets});
           widgetPositionInRow = 0;
           widgets = newWidgets();
         }
