@@ -21,6 +21,20 @@
                 "show": true,
                 "position": "bottom"
               },
+              "yaxes": [{
+                "label": "ms",
+                "max": 150,
+                "min": 0,
+                "show": true,
+                "units": "none"
+              },
+              {
+                "label": null,
+                "max": null,
+                "min": null,
+                "show": false,
+                "units": "none"
+              }],
               "draw_options": {
                 "bar": false,
                 "lines": true,

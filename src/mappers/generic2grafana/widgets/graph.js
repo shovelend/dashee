@@ -17,6 +17,11 @@ module.exports = function widgetGraphMapper() {
       'key': 'legend.rightSide',
       transform: srcValue => srcValue === "right"
     },
+    'widget.yaxes[].label': 'yaxes[].label',
+    'widget.yaxes[].max': 'yaxes[].max',
+    'widget.yaxes[].min': 'yaxes[].min',
+    'widget.yaxes[].show': 'yaxes[].show',
+    'widget.yaxes[].units': 'yaxes[].format',
     'widget.draw_options.bar': 'bars',
     'widget.draw_options.lines': 'lines',
     'widget.draw_options.points': 'points',

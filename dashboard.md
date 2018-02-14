@@ -80,6 +80,7 @@ Defines the type of visualisation to display
 | `title` | The title of visualisation. |
 | `width` | The percentage of window real estate this visualisation uses in the row. A value of 50 means use half of the row. |
 | `transparent` | Set to true if you want to background of the visualisation to be transparent |
+| `yaxes` | An array of y-axis information. The first item in the array is the left Y-axis, the second is the right Y-axis. Both must be specified. See [Y Axis options](#y-axis-options) for more details. |
 | `draw_options` | Each visualisation has a different set of draw options. See either [Gauge draw options](#gauge-draw-options), [Graph draw options](#graph_draw_options) or [Stat draw options](#stat-draw-options) for more details. |
 | `duration` | The number of minutes, hours or days to display for the visualisation. Overrides the default set at the dashboard level. See [duration](#duration) |
 | `datasource` | The name of the data source used to source the metric data. For now, use `FMP Graphite` |
@@ -92,6 +93,7 @@ Example:
   "type": "graph",
   "height": 360,
   "span": 6,
+  "yaxes": [{...}],
   "draw_options": {
   },
   "duration": {
@@ -107,6 +109,38 @@ Example:
   }]
 }
 ```
+
+### Y axis options
+
+Holds information about a graph the Y-axis.
+
+| Property | Description |
+| --- | --- |
+| `label` | Label to display on the y-axis |
+| `max` | Max value for the y-axis |
+| `min` | Min value for the y-axis |
+| `show` | If `true` shows the legend. |
+| `units` | Default to `none` for now. In future will allow other labels such as Gbs or currency values on the y-axis |
+
+Example:
+
+```JSON
+"yaxes": [{
+  "label": "ms",
+  "max": 150,
+  "min": 0,
+  "show": true,
+  "units": "none"
+},
+{
+  "label": null,
+  "max": null,
+  "min": null,
+  "show": false,
+  "units": "none"
+}]
+```
+
 ### Graph draw options
 
 Describes the properties needed to render the graph visualisation
