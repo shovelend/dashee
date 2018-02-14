@@ -39,3 +39,25 @@ tasks:
     service_name: publish
     env:
       - IMAGE=<%=registry%>/findmypast/<%=base_service_name%>:<%=version%>
+
+  publish_dashboard:
+    description: Publish a dashboard
+    do: sequence
+    actions:
+      - do: shell
+        vault_username: mthomas
+        vault_password: a6d4786740b14904a070595c0d628027
+        command: domesday read-key-value http://<%=vault_username%>:<%=vault_password%>@active.vault.service.consul:8200 secret/grafana/api_key
+        options:
+          register: api_key
+      - do: shell
+        transformer: generic2grafana
+        service_folder: .
+        dashboard_filename: flipper-test-dashboard-generic.json
+        service_name: flipper-test
+        command: dashee transform <%=transformer%> <%=service_folder%>/<%=dashboard_filename%> <%=service_name%>
+      - do: shell
+        destination: grafana
+        service_name: flipper-test
+        path: .
+        command: dashee publish-all <%=destination%> <%=service_name%> <%=path%> --grafana-key <%=api_key%>

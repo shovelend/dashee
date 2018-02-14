@@ -12,6 +12,11 @@ into this:
 ## WARNING.
 This a work in progress. Please be gentle with me if it all goes horribly wrong.
 
+## Table of contents
+
+* [Getting started](#getting-started)
+* [Publishing dashboards via ]
+
 ## Getting started
 
 1. Download the `dashee` command line tool:

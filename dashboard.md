@@ -59,6 +59,7 @@ A row holds a number of widgets that define what graphs appear in the row.
 
 | Property | Description |
 | --- | --- |
+| `height` | The height of the row as a percentage. Assuming a window height of 1200, a value of 25 will produce a row height of 300 pixels.
 | `widgets` | An array of [widgets](#widget) to appear in the row. |
 
 Example:

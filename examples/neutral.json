@@ -9,6 +9,7 @@
         "value": 4
       },
       "rows": [{
+        "height": 25,
         "widgets": [{
             "name": "response_time",
             "title": "Flipper Service Response Time (ms)",
