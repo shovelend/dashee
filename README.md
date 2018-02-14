@@ -54,7 +54,7 @@ This a work in progress. Please be gentle with me if it all goes horribly wrong.
  ```
  dashee publish grafana {path_to_grafana_json} --grafana-key {api_token}
  ```
- where `{path_to_grafana_json}` is one of the JSON files created in step 3. Find the `{api_token}` in vault under `secrets\grafana\api_key`
+ where `{path_to_grafana_json}` is one of the JSON files created in step 3. Find the `{api_token}` in vault under `/secret/grafana/api_key`
 
  If all goes well, something like the following should be returned:
 
