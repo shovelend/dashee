@@ -13,6 +13,8 @@ function loadJson(filename) {
 }
 
 function calcRowHeight(height) {
+  if (!height) return 300;
+  
   return (height/100)*1200;
 }
 
