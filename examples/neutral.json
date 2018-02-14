@@ -68,6 +68,7 @@
         }]
         },
         {
+          "height": 25,
           "widgets": [{
             "name": "flipper-errors",
             "title": "Avg Num Flipper Errors/min",
