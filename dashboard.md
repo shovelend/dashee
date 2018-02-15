@@ -355,6 +355,7 @@ Describes how to get data for the visualisation. At the moment, all metrics are 
 | --- | --- |
 | `key` | The graphite command that returns the data |
 | `id` | A unique identifier for the metric. Start at `A` and increment for each metric in the list |
+| `show` | If `false` the metric is not displayed on the graph |
 
 Example:
 

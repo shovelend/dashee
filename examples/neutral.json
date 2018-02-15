@@ -61,7 +61,8 @@
               "metrics": [{
                 "metric": {
                   "key": "summarize(averageSeries(long.flipper.production.*.*.express.toggle.requestElapsedTime), '10m', 'avg', false)",
-                  "id": "A"
+                  "id": "A",
+                  "show": true
                 }
               }]
             }
