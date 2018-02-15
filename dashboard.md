@@ -120,7 +120,7 @@ Holds information about a graph the Y-axis.
 | `max` | Max value for the y-axis |
 | `min` | Min value for the y-axis |
 | `show` | If `true` shows the legend. |
-| `units` | Default to `none` for now. In future will allow other labels such as Gbs or currency values on the y-axis |
+| `units` | Use one of `none`, `percent`, `nanoseconds`, `microseconds`, `milliseconds`, `seconds`, `minutes`, `hours`, `days`, `bits`, `bytes`, `kilobytes`, `megabytes` or `gigabytes` |
 
 Example:
 
@@ -245,6 +245,7 @@ Describes the properties needed to render the gauge  visualisation.
 | `animateNeedleSpeed` | the needle animation speed in milliseconds. |
 | `showThresholds` | Controls whether the thresholds are rendered on the gauge. Has three properties, `lower`, `middle`, `upper` which take boolean values. |
 | `colourOnValue` | Flag indicating if the value should be rendered depending on the threshold colour |
+| `units` | Use one of `none`, `percent`, `nanoseconds`, `microseconds`, `milliseconds`, `seconds`, `minutes`, `hours`, `days`, `bits`, `bytes`, `kilobytes`, `megabytes` or `gigabytes` |
 
 Example:
 ```JSON
@@ -290,7 +291,8 @@ Example:
     "middle": true,
     "upper": true
   },
-  "colourOnValue": true
+  "colourOnValue": true,
+  "units": "percent"
 }
 ```
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const durationMap = require('../duration_map');
+const unitsMap = require('../units-map');
 
 module.exports = function widgetGraphMapper() {
   return {
@@ -22,6 +23,10 @@ module.exports = function widgetGraphMapper() {
     'widget.yaxes[].min': 'yaxes[].min',
     'widget.yaxes[].show': 'yaxes[].show',
     'widget.yaxes[].units': 'yaxes[].format',
+    'widget.yaxes[].units': {
+      key: 'yaxes[].format',
+      transform: value => unitsMap(value)
+    },
     'widget.draw_options.bar': 'bars',
     'widget.draw_options.lines': 'lines',
     'widget.draw_options.points': 'points',

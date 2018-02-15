@@ -151,6 +151,7 @@
                 },
                 "unitsFont": "Open Sans",
                 "unitsLabelFontSize": 22,
+                "units": "percent",
                 "colours": {
                   "ok": "rgba(50, 172, 45, 0.97)",
                   "warning": "rgba(237, 129, 40, 0.89)",
