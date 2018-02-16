@@ -120,7 +120,7 @@ Holds information about a graph the Y-axis.
 | `max` | Max value for the y-axis |
 | `min` | Min value for the y-axis |
 | `show` | If `true` shows the legend. |
-| `units` | Use one of `none`, `percent`, `nanoseconds`, `microseconds`, `milliseconds`, `seconds`, `minutes`, `hours`, `days`, `bits`, `bytes`, `kilobytes`, `megabytes` or `gigabytes` |
+| `units` | Formats the value with a prefix. E.g.: Adds a percent sign for example. See [Units](#units) for more detail. |
 
 Example:
 
@@ -245,7 +245,7 @@ Describes the properties needed to render the gauge  visualisation.
 | `animateNeedleSpeed` | the needle animation speed in milliseconds. |
 | `showThresholds` | Controls whether the thresholds are rendered on the gauge. Has three properties, `lower`, `middle`, `upper` which take boolean values. |
 | `colourOnValue` | Flag indicating if the value should be rendered depending on the threshold colour |
-| `units` | Use one of `none`, `percent`, `nanoseconds`, `microseconds`, `milliseconds`, `seconds`, `minutes`, `hours`, `days`, `bits`, `bytes`, `kilobytes`, `megabytes` or `gigabytes` |
+| `units` | Formats the value with a prefix. E.g.: Adds a percent sign for example. See [Units](#units) for more detail. |
 
 Example:
 ```JSON
@@ -391,3 +391,32 @@ This defines a duration of four hours:
   "hide": false
 }
 ```
+
+### Units
+
+A list of units prefixes which formats the text on the graph Y axes and gauges:
+
+| Name | Description |
+| --- | --- |
+| none | No prefix |
+| percent | Add a `%` sign |
+| nanoseconds | Nanoseconds - `ns` |
+| microseconds | Microseconds - `µs` |
+| milliseconds | Milliseconds - `ms` |
+| seconds | Seconds - `s` |
+| minutes | Minutes - `m` |
+| hours | Hours - `h` |
+| days | Days - `d` |
+| bits | Bits - `b` |
+| bytes | Bytes - `B` |
+| kilobytes | Kilobytes - `kB` |
+| megabytes | Megabytes - `MB` |
+| gigabytes | Gigebytes - `GB` |
+| bitspersec | Bits per second - `bps` |
+| bytespersec | Bytes per second - `Bps` |
+| kilobitspersec | Kilobits per second - `kbps` |
+| kilobytespersec | Kilobytes per second - `kBps` |
+| megabitspersec | Megabits per second - `Mbps` |
+| megabytespersec | Megabytes per second - `MBs` |
+| gigabitspersec |  Gigabits per second - `Gbps` |
+| gigabytespersec | Gigabytes per second - `GBs` |

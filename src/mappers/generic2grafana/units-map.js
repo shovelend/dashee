@@ -13,7 +13,15 @@ const mapper = {
   bytes: 'decbytes',
   kilobytes: 'deckbytes',
   megabytes: 'decmbytes',
-  gigabytes: 'decgbytes'
+  gigabytes: 'decgbytes',
+  bitspersec: 'bps',
+  bytespersec: 'Bps',
+  kilobitspersec: 'Kbits',
+  kilobytespersec: 'KBs',
+  megabitspersec: 'Mbits',
+  megabytespersec: 'MBs',
+  gigabitspersec: 'Gbits',
+  gigabytespersec: 'GBs'
 }
 
 module.exports = unit => mapper[unit] || unit;

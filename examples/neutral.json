@@ -22,11 +22,11 @@
                 "position": "bottom"
               },
               "yaxes": [{
-                "label": "ms",
+                "label": "Response time",
                 "max": 150,
                 "min": 0,
                 "show": true,
-                "units": "none"
+                "units": "milliseconds"
               },
               {
                 "label": null,
