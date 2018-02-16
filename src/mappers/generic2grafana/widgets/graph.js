@@ -2,6 +2,7 @@
 
 const durationMap = require('../duration_map');
 const unitsMap = require('../units-map');
+const _ = require('lodash');
 
 module.exports = function widgetGraphMapper() {
   return {
@@ -18,14 +19,26 @@ module.exports = function widgetGraphMapper() {
       'key': 'legend.rightSide',
       transform: srcValue => srcValue === "right"
     },
-    'widget.yaxes[].label': 'yaxes[].label',
-    'widget.yaxes[].max': 'yaxes[].max',
-    'widget.yaxes[].min': 'yaxes[].min',
-    'widget.yaxes[].show': 'yaxes[].show',
-    'widget.yaxes[].units': 'yaxes[].format',
-    'widget.yaxes[].units': {
-      key: 'yaxes[].format',
-      transform: value => unitsMap(value)
+    'widget.yaxes': {
+      key: 'yaxes',
+      transform: srcValue => {
+        if (!srcValue) {
+          return [
+            { label: null, max: null, min: null, show: true, format: 'none'},
+            { label: null, max: null, min: null, show: false, format: 'none'}
+          ]
+        }
+
+        return _.map(srcValue, value => {
+          return {
+            label: value.label,
+            max: value.max,
+            min: value.min,
+            show: value.show,
+            format: unitsMap(value.units)
+          };
+        });
+      }
     },
     'widget.draw_options.bar': 'bars',
     'widget.draw_options.lines': 'lines',
