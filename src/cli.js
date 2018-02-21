@@ -7,6 +7,7 @@ const version = require('../package.json').version;
 const transform = require('./commands/transform');
 const publish = require('./commands/publish');
 const publishAll = require('./commands/publish-all');
+const deleteDb = require('./commands/delete');
 
 program
   .version(version);
@@ -27,5 +28,11 @@ program
     .description('Publishes all dashboards for that service to a destination. e.g.: "grafana"')
     .option('-k, --grafana-key [apiKey]', 'Grafana API key')
     .action(publishAll);
+
+  program
+    .command('delete <destination> <dashboard-title>')
+    .description('Deletes the named dashboard from a destination (e.g.: "grafana"). Note this is destructive!')
+    .option('-k, --grafana-key [apiKey]', 'Grafana API key')
+    .action(deleteDb);
 
 program.parse(process.argv);

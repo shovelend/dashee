@@ -12,6 +12,7 @@ into this:
 
 * [Getting started](#getting-started)
 * [Publishing dashboards with TeamCity](#publishing-dashboards-with-teamcity)
+* [Removing a dashboard](#removing-a-dashboard)
 
 ## Getting started
 
@@ -113,3 +114,22 @@ configure_dashboards:
 The differneces are minor but pretty obvious. The `dashboard_filename` is the path to the generic dashboard JSON file. Don't forget to update the `do` statement to use the new global `dashboards` task.
 
 That's it. At deploy time the dashboards will be published as normal.
+
+## Removing a dashboard
+
+If you no longer need a dashboard, please remove it so that noise is reduced when searching for dashboards.
+
+To remove a dashboard, send the `delete` command to Dashee:
+
+```
+dashee delete grafana "{dashboard-title}" --grafana-key {api_token}
+```
+
+Where `{dashboard-title}` is the full title of your dashboard, including spaces
+
+If all goes well, something like the following will be returned:
+
+```
+Delete successful for: "New Dashboard"
+{"title":"New dashboard"}
+```
