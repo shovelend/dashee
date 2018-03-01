@@ -50,7 +50,12 @@ module.exports = function widgetStatMapper() {
     'widget.datasource': 'datasource',
     'widget.metrics[].metric.key': 'targets[].target',
     'widget.metrics[].metric.id': 'targets[].refId',
-    'widget.metrics[].metric.show': 'targets[].hide',
+    'widget.metrics[].metric.show': {
+      key: 'targets[].hide',
+      transform: (value) => {
+        return _.map(value, v => v === false ? true: false)
+      }
+    },
     'widget.value_mappings[].operation': 'valueMaps[].op',
     'widget.value_mappings[].value': 'valueMaps[].value',
     'widget.value_mappings[].text': 'valueMaps[].text',
