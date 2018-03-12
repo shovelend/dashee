@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 const durationMap = require('../duration_map');
+const unitsMap = require('../units-map');
 
 module.exports = function widgetGaugeMapper() {
   return {
@@ -57,6 +58,10 @@ module.exports = function widgetGaugeMapper() {
     'widget.draw_options.font.tick.size': 'gauge.labelFontSize',
     'widget.draw_options.font.value.type': 'gauge.unitsFont',
     'widget.draw_options.font.value.size': 'gauge.unitsLabelFontSize',
+    'widget.draw_options.units': {
+      key: 'format',
+      transform: value => unitsMap(value)
+    },
     'widget.draw_options.thresholds': {
       transform: (srcValue, srcObject, destObject) => {
         destObject.thresholds = _.map(srcValue, v => v.value).join(',');
@@ -67,6 +72,12 @@ module.exports = function widgetGaugeMapper() {
     'widget.datasource': 'datasource',
     'widget.metrics[].metric.key': 'targets[].target',
     'widget.metrics[].metric.id': 'targets[].refId',
+    'widget.metrics[].metric.show': {
+      key: 'targets[].hide',
+      transform: (value) => {
+        return _.map(value, v => v === false ? true: false)
+      }
+    },
     'widget.value_mappings[].operation': 'valueMaps[].op',
     'widget.value_mappings[].value': 'valueMaps[].value',
     'widget.value_mappings[].text': 'valueMaps[].text',

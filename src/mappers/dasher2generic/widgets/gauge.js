@@ -101,6 +101,11 @@ module.exports = function widgetGaugeMapper() {
         _.forOwn(srcValue, metric => {
           let charCode = 65;
           const datasource = srcObject.datasources[metric.source];
+
+          if (!datasource) {
+            throw new Error(`Unable to find datasource named "${metric.source}". This probably indicates a problems with your Dasher YML file`);
+          }
+
           const key = metricsParser(datasource.functions, datasource.key);
           destObject.widget.metrics.push({
             metric: {

@@ -1,6 +1,8 @@
 'use strict';
 
 const durationMap = require('../duration_map');
+const unitsMap = require('../units-map');
+const _ = require('lodash');
 
 module.exports = function widgetGraphMapper() {
   return {
@@ -16,6 +18,27 @@ module.exports = function widgetGraphMapper() {
     'widget.legend.position': {
       'key': 'legend.rightSide',
       transform: srcValue => srcValue === "right"
+    },
+    'widget.yaxes': {
+      key: 'yaxes',
+      transform: srcValue => {
+        if (!srcValue) {
+          return [
+            { label: null, max: null, min: null, show: true, format: 'none'},
+            { label: null, max: null, min: null, show: false, format: 'none'}
+          ]
+        }
+
+        return _.map(srcValue, value => {
+          return {
+            label: value.label,
+            max: value.max,
+            min: value.min,
+            show: value.show,
+            format: unitsMap(value.units)
+          };
+        });
+      }
     },
     'widget.draw_options.bar': 'bars',
     'widget.draw_options.lines': 'lines',
@@ -36,6 +59,12 @@ module.exports = function widgetGraphMapper() {
     'widget.datasource': 'datasource',
     'widget.metrics[].metric.key': 'targets[].target',
     'widget.metrics[].metric.id': 'targets[].refId',
+    'widget.metrics[].metric.show': {
+      key: 'targets[].hide',
+      transform: (value) => {
+        return _.map(value, v => v === false ? true: false)
+      }
+    },
     'widget.value_mappings[].operation': 'valueMaps[].op',
     'widget.value_mappings[].value': 'valueMaps[].value',
     'widget.value_mappings[].text': 'valueMaps[].text',

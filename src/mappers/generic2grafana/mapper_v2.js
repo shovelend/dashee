@@ -12,6 +12,12 @@ function loadJson(filename) {
   return fs.readJsonSync(filename);
 }
 
+function calcRowHeight(height) {
+  if (!height) return 300;
+  
+  return (height/100)*1200;
+}
+
 function mapRows(dashboard, map) {
   const widgetMappers = map.widgetMapper();
   let widgetNum = 0;
@@ -31,7 +37,7 @@ function mapRows(dashboard, map) {
       }
     });
     // console.log(panels);
-    rows.push({collapse: false, height: 400, panels: panels});
+    rows.push({collapse: false, height: `${calcRowHeight(row.height)}px`, panels: panels});
   });
 
   return rows;

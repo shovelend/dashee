@@ -59,6 +59,7 @@ A row holds a number of widgets that define what graphs appear in the row.
 
 | Property | Description |
 | --- | --- |
+| `height` | The height of the row as a percentage. Assuming a window height of 1200, a value of 25 will produce a row height of 300 pixels.
 | `widgets` | An array of [widgets](#widget) to appear in the row. |
 
 Example:
@@ -79,6 +80,7 @@ Defines the type of visualisation to display
 | `title` | The title of visualisation. |
 | `width` | The percentage of window real estate this visualisation uses in the row. A value of 50 means use half of the row. |
 | `transparent` | Set to true if you want to background of the visualisation to be transparent |
+| `yaxes` | An array of y-axis information. The first item in the array is the left Y-axis, the second is the right Y-axis. Both must be specified. See [Y Axis options](#y-axis-options) for more details. |
 | `draw_options` | Each visualisation has a different set of draw options. See either [Gauge draw options](#gauge-draw-options), [Graph draw options](#graph_draw_options) or [Stat draw options](#stat-draw-options) for more details. |
 | `duration` | The number of minutes, hours or days to display for the visualisation. Overrides the default set at the dashboard level. See [duration](#duration) |
 | `datasource` | The name of the data source used to source the metric data. For now, use `FMP Graphite` |
@@ -91,6 +93,7 @@ Example:
   "type": "graph",
   "height": 360,
   "span": 6,
+  "yaxes": [{...}],
   "draw_options": {
   },
   "duration": {
@@ -106,6 +109,38 @@ Example:
   }]
 }
 ```
+
+### Y axis options
+
+Holds information about a graph the Y-axis.
+
+| Property | Description |
+| --- | --- |
+| `label` | Label to display on the y-axis |
+| `max` | Max value for the y-axis |
+| `min` | Min value for the y-axis |
+| `show` | If `true` shows the legend. |
+| `units` | Formats the value with a prefix. E.g.: Adds a percent sign for example. See [Units](#units) for more detail. |
+
+Example:
+
+```JSON
+"yaxes": [{
+  "label": "ms",
+  "max": 150,
+  "min": 0,
+  "show": true,
+  "units": "none"
+},
+{
+  "label": null,
+  "max": null,
+  "min": null,
+  "show": false,
+  "units": "none"
+}]
+```
+
 ### Graph draw options
 
 Describes the properties needed to render the graph visualisation
@@ -210,6 +245,7 @@ Describes the properties needed to render the gauge  visualisation.
 | `animateNeedleSpeed` | the needle animation speed in milliseconds. |
 | `showThresholds` | Controls whether the thresholds are rendered on the gauge. Has three properties, `lower`, `middle`, `upper` which take boolean values. |
 | `colourOnValue` | Flag indicating if the value should be rendered depending on the threshold colour |
+| `units` | Formats the value with a prefix. E.g.: Adds a percent sign for example. See [Units](#units) for more detail. |
 
 Example:
 ```JSON
@@ -255,7 +291,8 @@ Example:
     "middle": true,
     "upper": true
   },
-  "colourOnValue": true
+  "colourOnValue": true,
+  "units": "percent"
 }
 ```
 
@@ -320,6 +357,7 @@ Describes how to get data for the visualisation. At the moment, all metrics are 
 | --- | --- |
 | `key` | The graphite command that returns the data |
 | `id` | A unique identifier for the metric. Start at `A` and increment for each metric in the list |
+| `show` | If `false` the metric is not displayed on the graph |
 
 Example:
 
@@ -353,3 +391,32 @@ This defines a duration of four hours:
   "hide": false
 }
 ```
+
+### Units
+
+A list of units prefixes which formats the text on the graph Y axes and gauges:
+
+| Name | Description |
+| --- | --- |
+| none | No prefix |
+| percent | Add a `%` sign |
+| nanoseconds | Nanoseconds - `ns` |
+| microseconds | Microseconds - `µs` |
+| milliseconds | Milliseconds - `ms` |
+| seconds | Seconds - `s` |
+| minutes | Minutes - `m` |
+| hours | Hours - `h` |
+| days | Days - `d` |
+| bits | Bits - `b` |
+| bytes | Bytes - `B` |
+| kilobytes | Kilobytes - `kB` |
+| megabytes | Megabytes - `MB` |
+| gigabytes | Gigebytes - `GB` |
+| bitspersec | Bits per second - `bps` |
+| bytespersec | Bytes per second - `Bps` |
+| kilobitspersec | Kilobits per second - `kbps` |
+| kilobytespersec | Kilobytes per second - `kBps` |
+| megabitspersec | Megabits per second - `Mbps` |
+| megabytespersec | Megabytes per second - `MBs` |
+| gigabitspersec |  Gigabits per second - `Gbps` |
+| gigabytespersec | Gigabytes per second - `GBs` |

@@ -9,6 +9,7 @@
         "value": 4
       },
       "rows": [{
+        "height": 25,
         "widgets": [{
             "name": "response_time",
             "title": "Flipper Service Response Time (ms)",
@@ -20,6 +21,20 @@
                 "show": true,
                 "position": "bottom"
               },
+              "yaxes": [{
+                "label": "Response time",
+                "max": 150,
+                "min": 0,
+                "show": true,
+                "units": "milliseconds"
+              },
+              {
+                "label": null,
+                "max": null,
+                "min": null,
+                "show": false,
+                "units": "none"
+              }],
               "draw_options": {
                 "bar": false,
                 "lines": true,
@@ -46,13 +61,15 @@
               "metrics": [{
                 "metric": {
                   "key": "summarize(averageSeries(long.flipper.production.*.*.express.toggle.requestElapsedTime), '10m', 'avg', false)",
-                  "id": "A"
+                  "id": "A",
+                  "show": true
                 }
               }]
             }
         }]
         },
         {
+          "height": 25,
           "widgets": [{
             "name": "flipper-errors",
             "title": "Avg Num Flipper Errors/min",
@@ -134,6 +151,7 @@
                 },
                 "unitsFont": "Open Sans",
                 "unitsLabelFontSize": 22,
+                "units": "percent",
                 "colours": {
                   "ok": "rgba(50, 172, 45, 0.97)",
                   "warning": "rgba(237, 129, 40, 0.89)",

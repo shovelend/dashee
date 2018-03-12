@@ -32,6 +32,7 @@ function mapRows(dashboard, map, datasources) {
 
         if (++widgetPositionInRow === maxPosition) {
           // console.log('End of row');
+          widgets.height = 33;
           rows.push(widgets);
           widgetPositionInRow = 0;
           widgets = newWidgets();
@@ -44,6 +45,7 @@ function mapRows(dashboard, map, datasources) {
   });
 
   if (widgetPositionInRow !== 0) {
+    widgets.height = 33;
     rows.push(widgets);
   }
   // console.log("%%%%", JSON.stringify(rows));
