@@ -1,6 +1,6 @@
 {
   "name": "dashee",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Manage project dashboards",
   "main": "src/cli.js",
   "scripts": {
